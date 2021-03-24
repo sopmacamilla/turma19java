@@ -7,17 +7,24 @@ programa
 	
 	funcao inicio()
 	{
-		inteiro data
-		inteiro dataAniversario = 10
+		inteiro dia
+		inteiro diaAniversario = 10
 		real saldo = 100
 		
-		escreva("Informe a data de hoje: ")
-		leia(data)
+		escreva("Informe qual o dia de hoje: ")
+		leia(dia)
 
-		se (data == dataAniversario)
+		se (dia == diaAniversario)
+		{
 			saldo = (saldo * 0.05) + saldo
 
 			escreva("Seu saldo foi atualizado para R$ ",saldo)
+		}
+
+			senao se (dia != diaAniversario)
+			{
+				escreva("Seu saldo é: ",saldo)
+			}	
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -25,7 +32,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 423; 
+ * @POSICAO-CURSOR = 298; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

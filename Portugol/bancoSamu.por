@@ -1,15 +1,14 @@
 programa
 {
 	inclua biblioteca Util
-		
-cadeia numero
+		cadeia numero
 		cadeia cpf
-		real saldoDebito = 500.00
 		cadeia status
 		logico ativa
-		real limiteCredito = 500.00
+		real limiteCredito = 0.00
 		real saldoCredito = 0.00
 		real dividendo = 0.00
+		real saldoDebito = 500.00
 	
 	funcao inicio()
 	{	caracter opcao
@@ -32,6 +31,26 @@ cadeia numero
 				tipo = "POUPANÇA"
 				cabecalho(tipo)
 				Util.aguarde(2000)
+
+					inteiro dia
+					inteiro diaAniversario = 10
+					real saldo = 100
+					
+					escreva("Informe qual o dia de hoje: ")
+					leia(dia)
+			
+					se (dia == diaAniversario)
+					{
+						saldo = (saldo * 0.05) + saldo
+			
+						escreva("Seu saldo foi atualizado para R$ ",saldo)
+					}
+
+					senao se (dia != diaAniversario)
+					{
+						escreva("Seu saldo é: ",saldo)
+					}	
+			
 				
 				} senao se (opcao == '2') {
 
@@ -56,45 +75,56 @@ cadeia numero
 					para(real x=1; x<=10; x++){
 					 	
 					 	caracter moviBancaria 
-					 	real valorPag
+					 	real valorPag = 0.00
+					 	real valorEmprestimo
+					 	
 
 					 	
 					 	escreva("Número de transações: ", x,"\n")
 					 	escreva("Saldo Atual: R$", saldoDebito,"\n")
-					 	escreva("Movimentação bancária:\nC - Crédito\nD - Débito\n Insira o tipo de movimentação: ")
+					 	faca {
+					 	escreva("Movimentação bancária:\nC - Crédito\nD - Débito\nInsira o tipo de movimentação: ")
 					 	leia(moviBancaria)
-					 	escreva("Valor à pagar: ")
-					 	leia(valorPag)
-					 	escreva("\nLimite de crédito disponível :", saldoCredito,"\n")
-					 	escreva("\nFatura :",dividendo,"\n")
-					 	se (moviBancaria == 'D') {
+					 	se (moviBancaria =='C' ou moviBancaria == 'D' ) {
+					 		escreva("Valor à pagar: ")
+					 		leia(valorPag)
+					 		escreva("\nLimite de crédito disponível :", saldoCredito,"\n")
+					 		escreva("\nFatura :",dividendo,"\n")
+					 		se (moviBancaria == 'D') {
 					 		saldoDebito = saldoDebito - valorPag 
-
-							
-					 		
 					 		} senao se (moviBancaria == 'C'){
 					 		 saldoDebito = saldoDebito 
 					 		 dividendo = (saldoCredito - saldoCredito) + valorPag
-					 			
-					 			} senao {
+					 		} senao se (moviBancaria !='C' ou moviBancaria != 'D' ) {
 								escreva("\nPor favor, digite apenas as alternativas acima!\n")
-								Util.aguarde(1500)}			
+								Util.aguarde(1500)}	
+					 		
+					 		
+					 	}
+							senao se (moviBancaria !='C' ou moviBancaria != 'D'){
+								escreva("\nPor favor, digite apenas uma das alternativas acima!\n")
+								Util.aguarde(1500)}	
+							} enquanto (moviBancaria != 'C' ou moviBancaria != 'D')
+								
+					 	
+					 		
+					 	
+					 			
 					 				
 					 				}
 					 	
 					 
 					 
-			} 
+			}  
 						
-
 				
-				senao se  (opcao == '6') {
+				 senao se  (opcao == '6') {
 
 				escreva("\nVocê escolheu a opção SAIR\n")
 				Util.aguarde(1500)
 				
 				} 	senao {
-					escreva("Voê não selecionou um número entre 1 e 6\n")
+					escreva("Você não selecionou um número entre 1 e 6\n")
 					escreva("Tente novamente: ")
 					leia(opcao)
 					}
@@ -104,8 +134,7 @@ cadeia numero
 			escreva("\nPrograma finalizado com sucesso!")
 	}
 	
-		funcao 
-cabecalho (cadeia tipo){
+		funcao cabecalho (cadeia tipo){
 			limpa()
 			escreva("BANG-3\n")
 			escreva("Um banco feito para a sua geração\n")
@@ -122,6 +151,7 @@ cabecalho (cadeia tipo){
 			leia(status) 
 			se (status == "1") {
 				ativa = verdadeiro 
+				
 				}
 				senao {
 					ativa = falso
@@ -141,13 +171,12 @@ cabecalho (cadeia tipo){
 			}
 		
 }
-
 /* $$$ Portugol Studio $$$ 
  * 
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1697; 
+ * @POSICAO-CURSOR = 1098; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
