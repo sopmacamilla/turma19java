@@ -1,77 +1,55 @@
 package entities;
 
+import java.util.Scanner;
 
-public class Bebidas extends ProdutoAbstrata{
-	
-	//atributos
-	public char tipo;
-	public boolean alcoolico;
-	public String marca;
-	public char tipoBebida;
+public class Bebidas extends Produto{
+	private static String marca; // METODO STATIC
+	private int qtdeEstoque;
 	
 	
-	
+	Scanner sc = new Scanner (System.in);
 
-	public Bebidas(String descricao, String codigo, double valorUnitario, char tipo, boolean alcoolico, String marca,
-			char tipoBebida) {
-		super(descricao, codigo, valorUnitario);
-		this.tipo = tipo;
-		this.alcoolico = alcoolico;
+	public Bebidas(String descricao, String codigo, double valorUnitario, String marca, int qtdeEstoque) {
+		super(descricao, codigo, valorUnitario, qtdeEstoque);
 		this.marca = marca;
-		this.tipoBebida = tipoBebida;
+		this.qtdeEstoque = qtdeEstoque;
 	}
 
 
-	//encapsulamento
-	public char getTipo() {
-		return tipo;
+	public int getQtdeEstoque() {
+		return qtdeEstoque;
 	}
 
 
-	public void setTipo(char tipo) {
-		this.tipo = tipo;
+	public void setQtdeEstoque(int qtdeEstoque) {
+		this.qtdeEstoque = qtdeEstoque;
 	}
-
-
-	public boolean isAlcoolico() {
-		return alcoolico;
-	}
-
-
-	public void setAlcoolico(boolean alcoolico) {
-		this.alcoolico = alcoolico;
-	}
-
-
-	public String getMarca() {
+	
+	public static String getMarca() {
 		return marca;
 	}
 
 
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-		
-	
-	//métodos
-	public String tipoBebida() {
-		String saida="";
-		
-		if (this.tipo == '1') {
-			saida = "Vinho";
-			
-		} 
-		
-		else if (this.tipo == '2') {
-			saida = "Cerveja";
-		}
-		else if (this.tipo == '3') {
-			saida = "Água de côco";
-		}
-		
-		return saida;
+	public static void setMarca(String marca) {
+		Bebidas.marca = marca;
 	}
 
+	@Override
+	public void incluirEstoque(int valorSerIncluido) { 
+		incluirEstoque(valorSerIncluido);
+			
+		}
+		//metodos
+	@Override
+	public void tirarEstoque(int valorSerExcluido) {
+		if (getQtdeEstoque() >= valorSerExcluido) {
+			super.tirarEstoque(valorSerExcluido);
+			}	
+			else {
+			System.out.println("Estoque indisponivel!");
+			}
+		
+	}
+	
 	
 }
-
